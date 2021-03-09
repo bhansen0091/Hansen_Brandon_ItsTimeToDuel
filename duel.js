@@ -37,7 +37,6 @@ class Effect extends Card {
     //version 3
     play = (target) => {target instanceof Unit ? (this.stat == "power" ? target.power += this.magnitude : target.res += this.magnitude) : (() => {throw new Error("Target must be a unit!")})()}
 
-
     //Version 2
     // play = (target) => {
     //     if (target instanceof Unit) {
@@ -47,7 +46,6 @@ class Effect extends Card {
     //         throw new Error("Target must be a unit!");
     //     }
     // }
-
 
     //Version 1
     // play(target) {
@@ -79,7 +77,7 @@ const pairProg = new Effect("Pair Programming", 3, "Increase target's power by 2
 pairProg.play(redBeltNinja);
 redBeltNinja.attack(blackBeltNinja)
 
-pairProg.play(unhandledPromReject);
+// pairProg.play(unhandledPromReject);
 
 console.log(redBeltNinja);
 console.log(blackBeltNinja);
