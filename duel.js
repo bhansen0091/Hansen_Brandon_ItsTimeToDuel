@@ -34,19 +34,35 @@ class Effect extends Card {
         this.magnitude = magnitude;
     }
 
-    play(target) {
-        if (target instanceof Unit) {
-            if (this.stat == "power") {
-                console.log(`${this.name} | ${this.stat} | ${this.magnitude}`);
-                target.power += this.magnitude;
-            } else if (this.stat == "res") {
-                console.log(`${this.name} | ${this.stat} | ${this.magnitude}`);
-                target.res += this.magnitude;
-            }
-        } else {
-            throw new Error("Target must be a unit!");
-        }
-    }
+    //version 3
+    play = (target) => {target instanceof Unit ? (this.stat == "power" ? target.power += this.magnitude : target.res += this.magnitude) : (() => {throw new Error("Target must be a unit!")})()}
+
+
+    //Version 2
+    // play = (target) => {
+    //     if (target instanceof Unit) {
+    //         this.stat == "power" ? target.power += this.magnitude : target.res += this.magnitude;
+    //     }
+    //     else {
+    //         throw new Error("Target must be a unit!");
+    //     }
+    // }
+
+
+    //Version 1
+    // play(target) {
+    //     if (target instanceof Unit) {
+    //         if (this.stat == "power") {
+    //             console.log(`${this.name} | ${this.stat} | ${this.magnitude}`);
+    //             target.power += this.magnitude;
+    //         } else if (this.stat == "res") {
+    //             console.log(`${this.name} | ${this.stat} | ${this.magnitude}`);
+    //             target.res += this.magnitude;
+    //         }
+    //     } else {
+    //         throw new Error("Target must be a unit!");
+    //     }
+    // }
 
 }
 
@@ -63,6 +79,7 @@ const pairProg = new Effect("Pair Programming", 3, "Increase target's power by 2
 pairProg.play(redBeltNinja);
 redBeltNinja.attack(blackBeltNinja)
 
+pairProg.play(unhandledPromReject);
 
 console.log(redBeltNinja);
 console.log(blackBeltNinja);
